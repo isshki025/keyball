@@ -173,13 +173,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             tap_code16((get_mods() & MOD_MASK_SHIFT) ? KC_QUES : KC_QUOT);
             break;
           case CUSTOM_EXEQ:
-            tap_code16((get_mods() & MOD_MASK_SHIFT) ? KC_EQUAL : S(KC_1));
+            tap_code16((get_mods() & MOD_MASK_SHIFT) ? S(KC_1) : KC_EQUAL);
             break;
           case CUSTOM_ATAMP:
             tap_code16((get_mods() & MOD_MASK_SHIFT) ? KC_AMPR : KC_AT);
             break;
           case CUSTOM_HASHSC:
-            tap_code16((get_mods() & MOD_MASK_SHIFT) ? KC_SCLN : S(KC_3));
+            if (get_mods() & MOD_MASK_SHIFT) {
+                del_mods(MOD_MASK_SHIFT);
+                tap_code(KC_SCLN);
+                set_mods(MOD_MASK_SHIFT);
+            } else {
+                tap_code16(S(KC_3));
+            }
             break;
           case CUSTOM_DOTDLR:
             tap_code16((get_mods() & MOD_MASK_SHIFT) ? S(KC_4) : KC_DOT);
@@ -188,8 +194,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             tap_code16((get_mods() & MOD_MASK_SHIFT) ? KC_COLN : KC_COMM);
             break;
           case CUSTOM_GRVSLH:
-            tap_code16((get_mods() & MOD_MASK_SHIFT) ? KC_SLSH : KC_GRV);
+            tap_code16((get_mods() & MOD_MASK_SHIFT) ? KC_GRV : KC_SLSH);
             break;
+            
+case BRACKETS:  // このケースは重複しているので削除
+      if (record->event.pressed) {
+          SEND_STRING("[]");
+      }
+      return false;
           case CUSTOM_TILDCRT:
             tap_code16((get_mods() & MOD_MASK_SHIFT) ? S(KC_6) : KC_TILD);
             break;
