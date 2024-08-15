@@ -200,7 +200,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             tap_code16((get_mods() & MOD_MASK_SHIFT) ? S(KC_BSLS) : S(KC_5));
             break;
           case CUSTOM_GRVSLH:
-            tap_code16((get_mods() & MOD_MASK_SHIFT) ? KC_GRV : KC_SLSH);
+            if (get_mods() & MOD_MASK_SHIFT) {
+                // Shiftが押されている場合でも、Shiftを無視してグレイブアクセントを出力する
+                del_mods(MOD_MASK_SHIFT);  // Shift修飾キーを一時的に解除
+                tap_code(KC_GRV);  // グレイブアクセント（`）を送信
+                set_mods(get_mods() | MOD_MASK_SHIFT);  // Shift修飾キーを元に戻す
+            } else {
+                tap_code(KC_SLSH);  // スラッシュ（/）を送信
+            }
             break;
         }
         
