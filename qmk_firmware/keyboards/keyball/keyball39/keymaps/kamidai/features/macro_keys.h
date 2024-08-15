@@ -193,22 +193,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           case CUSTOM_COMMCLN:
             tap_code16((get_mods() & MOD_MASK_SHIFT) ? KC_COLN : KC_COMM);
             break;
-          case CUSTOM_GRVSLH:
-            tap_code16((get_mods() & MOD_MASK_SHIFT) ? KC_GRV : KC_SLSH);
-            break;
-            
-case BRACKETS:  // このケースは重複しているので削除
-      if (record->event.pressed) {
-          SEND_STRING("[]");
-      }
-      return false;
+          、
           case CUSTOM_TILDCRT:
             tap_code16((get_mods() & MOD_MASK_SHIFT) ? S(KC_6) : KC_TILD);
             break;
           case CUSTOM_PERCPIPE:
             tap_code16((get_mods() & MOD_MASK_SHIFT) ? S(KC_BSLS) : S(KC_5));
             break;
+          case CUSTOM_GRVSLH:
+            tap_code16((get_mods() & MOD_MASK_SHIFT) ? KC_GRV : KC_SLSH);
+            break;
         }
+        
       }
       return false;
     }
