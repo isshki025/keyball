@@ -9,30 +9,30 @@
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_universal(
-    KC_Q     , KC_W     , KC_E     , KC_R     , KC_T     ,                                       KC_Y           , KC_U     , KC_I     , KC_O     , KC_P       ,
-    KC_A     , KC_S     , KC_D     , KC_F     , KC_G     ,                                       KC_H           , KC_J     , KC_K     , KC_L     , KC_ENTER   ,
-    KC_Z     , KC_X     , KC_C     , KC_V     , KC_B     ,                                       KC_N           , KC_M     , KC_COMMA , KC_DOT   , KC_RCTL   ,
-    KC_LGUI  , KC_TRNS  , KC_TRNS  , KC_TRNS  , LT(1, KC_SPACE), LT(2,KC_LNG2),    LT(1,KC_LNG1),LT(2, KC_BSPC ), MO(3)    , KC_TAB   , KC_RALT  , KC_RSFT
+    KC_Q     , KC_W     , KC_E     , KC_R     , KC_T     ,                                       KC_Y         , KC_U          , KC_I      , KC_O     , KC_P      ,
+    KC_A     , KC_S     , KC_D     , KC_F     , KC_G     ,                                       KC_H         , KC_J          , KC_K      , KC_L     , KC_ENTER  ,
+    KC_Z     , KC_X     , KC_C     , KC_V     , KC_B     ,                                       KC_N         , KC_M          , KC_COMMA  , KC_DOT   , KC_RCTL   ,
+    KC_LGUI  , KC_TRNS  , KC_TRNS  , KC_TRNS  , LT(1, KC_SPACE), LT(2,KC_LNG2),    LT(1,KC_LNG1),LT(2,KC_BSPC), LT(3, KC_TAB) , KC_RSHIFT , KC_RALT  , KC_RCTL
   ),
 
   [1] = LAYOUT_universal(
-    CUSTOM_QUES  ,S(KC_2)      , CUSTOM_EXEQ    , KC_TRNS  , KC_TRNS     ,                          KC_BSLS        , S(KC_MINUS) , KC_TRNS , KC_TRNS        , CUSTOM_PERCPIPE,
-    CUSTOM_ATAMP ,CUSTOM_HASHSC, CUSTOM_DOTDLR  , KC_TRNS  , KC_TRNS     ,                          KC_MINUS       , KC_TRNS     , BRACES  , KC_TRNS        , KC_TRNS        ,
-    C(KC_LEFT)   , KC_TRNS     , CUSTOM_COMMCLN , KC_TRNS  ,CUSTOM_GRVSLH,                          CUSTOM_TILDCRT , KC_TRNS     , PARENS  , ANGLE_BRACKETS , KC_TRNS        ,
-    KC_TRNS      , KC_TRNS     , KC_TRNS        , KC_TRNS  , KC_TRNS     , KC_TRNS  ,     KC_TRNS , KC_TRNS        , KC_TRNS     , KC_TRNS , KC_TRNS        , KC_TRNS
+    KC_QUES    , S(KC_QUOT) , S(KC_1)    , KC_TRNS  , S(KC_BSLS) ,                            S(KC_4)       , S(KC_6) , S(KC_3)  , KC_TRNS        , S(KC_5) ,
+    S(KC_2)    , KC_QUOT    , S(KC_4)    , KC_TRNS  , UC(0x00B7) ,                            KC_MINUS      , KC_TRNS , BRACKETS , CURLY_BRACES   , KC_TRNS ,
+    C(KC_LEFT) , KC_GRV     , S(KC_SCLN) , KC_SCLN  , KC_SLSH    ,                            S(KC_GRV)     , S(KC_7) , PARENS   , ANGLE_BRACKETS , KC_TRNS ,
+    KC_TRNS    , KC_TRNS    , KC_TRNS    , KC_TRNS  , KC_TRNS    , KC_TRNS ,        KC_TRNS , LT(2, KC_DEL) , KC_TRNS , KC_TRNS  , KC_TRNS        , KC_TRNS
   ),
 
   [2] = LAYOUT_universal(
-    KC_HOME  , KC_UP    , KC_END    , KC_TRNS  , KC_TRNS  ,                            KC_DOT     , KC_7     , KC_8     , KC_9     , S(KC_8)      ,
-    KC_LEFT  , KC_DOWN  , KC_RIGHT  , KC_TRNS  , KC_TRNS  ,                            KC_EQUAL   , KC_4     , KC_5     , KC_6     , S(KC_EQUAL)  ,
-    KC_ESC   , KC_TRNS  , KC_TRNS   , KC_TRNS  , KC_TRNS  ,                            KC_0       , KC_1     , KC_2     , KC_3     , KC_MINUS     ,
-    KC_TRNS  , KC_TRNS  , KC_TRNS   , KC_TRNS  , KC_TRNS  , KC_TRNS  ,      KC_TRNS  , KC_TRNS    , KC_TRNS  , KC_TRNS  , KC_TRNS  , KC_TRNS  
+    KC_HOME  , KC_UP    , KC_END    , S(KC_EQL) , KC_MINS  ,                            KC_DOT     , KC_7     , KC_8     , KC_9     , KC_TRNS ,
+    KC_LEFT  , KC_DOWN  , KC_RIGHT  , S(KC_8)   , KC_SLSH  ,                            KC_EQUAL   , KC_4     , KC_5     , KC_6     , KC_TRNS ,
+    KC_ESC   , KC_TRNS  , KC_TRNS   , KC_EQL    , KC_DOT   ,                            KC_0       , KC_1     , KC_2     , KC_3     , KC_TRNS ,
+    KC_TRNS  , KC_TRNS  , KC_TRNS   , KC_TRNS   , KC_TRNS  , KC_TRNS  ,      KC_TRNS  , KC_TRNS    , KC_TRNS  , KC_TRNS  , KC_TRNS  , KC_TRNS  
   ),
 
   [3] = LAYOUT_universal(
-    KC_TRNS  , KC_TRNS  , KC_TRNS  , KC_TRNS  , KC_TRNS  ,                            KC_F12   , KC_F7    , KC_F8    , KC_F9    , KC_TRNS  ,
+    KC_TRNS  , KC_TRNS  , KC_TRNS  , KC_TRNS  , KC_TRNS  ,                            KC_F10   , KC_F7    , KC_F8    , KC_F9    , KC_TRNS  ,
     KC_TRNS  , KC_TRNS  , KC_TRNS  , KC_TRNS  , KC_TRNS  ,                            KC_F11   , KC_F4    , KC_F5    , KC_F6    , KC_TRNS  ,
-    KC_TRNS  , KC_TRNS  , KC_TRNS  , KC_TRNS  , KC_TRNS  ,                            KC_F10   , KC_F1    , KC_F2    , KC_F3    , KC_TRNS  ,
+    KC_TRNS  , KC_TRNS  , KC_TRNS  , KC_TRNS  , KC_TRNS  ,                            KC_F12   , KC_F1    , KC_F2    , KC_F3    , KC_TRNS  ,
     KC_TRNS  , KC_TRNS  , KC_TRNS  , KC_TRNS  , KC_TRNS  , KC_TRNS  ,      KC_TRNS  , KC_TRNS  , KC_TRNS  , KC_TRNS  , KC_TRNS  , KC_TRNS  
   ),
 
@@ -51,10 +51,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [6] = LAYOUT_universal(
-    KC_TRNS  , KC_TRNS  , KC_TRNS  , KC_TRNS  , KC_TRNS  ,                            KC_TRNS  , KC_TRNS    , KC_TRNS    , KC_TRNS    , KC_TRNS  ,
-    KC_LALT  , KC_LSFT  , KC_TRNS  ,KC_MS_BTN1, KC_TRNS ,                             KC_TRNS  , KC_MS_BTN1 , KC_MS_BTN3 , KC_MS_BTN2 , KC_TRNS  ,
-    KC_TRNS  , KC_TRNS  , KC_TRNS  , KC_TRNS  , KC_TRNS  ,                            KC_TRNS  , KC_TRNS    , KC_TRNS    , KC_TRNS    , KC_TRNS  ,
-    KC_TRNS  , KC_TRNS  , KC_TRNS  , KC_TRNS  , KC_TRNS  , KC_TRNS  ,      KC_TRNS  , KC_TRNS  , KC_TRNS    , KC_TRNS    , KC_TRNS    , KC_TRNS  
+    KC_TRNS  , KC_TRNS     , KC_TRNS    , KC_TRNS    , KC_TRNS ,                            KC_TRNS     , KC_TRNS    , KC_TRNS    , KC_TRNS    , KC_TRNS  ,
+    KC_LALT  , KC_WWW_BACK , KC_MS_BTN1 , KC_MS_BTN2 , KC_TRNS ,                            KC_WWW_BACK , KC_MS_BTN1 , KC_MS_BTN3 , KC_MS_BTN2 , KC_TRNS  ,
+    KC_TRNS  , KC_TRNS     , KC_TRNS    , KC_TRNS    , KC_TRNS ,                            KC_TRNS     , KC_TRNS    , KC_TRNS    , KC_TRNS    , KC_TRNS  ,
+    KC_TRNS  , KC_TRNS     , KC_TRNS    , KC_TRNS    , KC_TRNS , KC_TRNS  ,      KC_TRNS  , KC_TRNS     , KC_TRNS    , KC_TRNS    , KC_TRNS    , KC_TRNS  
   )
 };
 

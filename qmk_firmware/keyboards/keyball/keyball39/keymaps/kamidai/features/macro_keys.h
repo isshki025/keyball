@@ -33,15 +33,15 @@ enum custom_keycodes {
   KC_TRIPLE_CLICK_BTN1,                         // (0x5DB1): 1タップでトリプルクリックできるBTN1
   SFT_T_G_KC_A,                                 // (0x5DB2):
   SFT_T_S_KC_SCOLON,                            // (0x5DB3):
-  COMBO_BRC,                                    // (0x5DB5):
-  COMBO_select_BRC,                             // (0x5DB5):
-  COMBO_S9_S0,                                  // (0x5DB5):
-  COMBO_select_S9_S0,                           // (0x5DB5):
-  COMBO_S_BRC,                                  // (0x5DB5):
-  COMBO_select_S_BRC,                           // (0x5DB5):
-  COMBO_sumitsuki_BRC,                          // (0x5DB5):
-  COMBO_select_sumitsuki_BRC,                   // (0x5DB5):
-  COMBO_MINUS_SPACE,                            // (0x5DB5):
+//   COMBO_BRC,                                    // (0x5DB5):
+//   COMBO_select_BRC,                             // (0x5DB5):
+//   COMBO_S9_S0,                                  // (0x5DB5):
+//   COMBO_select_S9_S0,                           // (0x5DB5):
+//   COMBO_S_BRC,                                  // (0x5DB5):
+//   COMBO_select_S_BRC,                           // (0x5DB5):
+//   COMBO_sumitsuki_BRC,                          // (0x5DB5):
+//   COMBO_select_sumitsuki_BRC,                   // (0x5DB5):
+//   COMBO_MINUS_SPACE,                            // (0x5DB5):
   // CUSTOM_LT1_LEFT,                           //
   // CUSTOM_LT1_LEFT,                           //
   // CUSTOM_S9,                                 //
@@ -49,21 +49,10 @@ enum custom_keycodes {
   // KC_ALT_BTN1,                               //
   // select_BRC,
   // CMD_SCRL,
-  CUSTOM_QUES,                                  // ' and ?
-  CUSTOM_EXEQ,                                  // ! and =
-  CUSTOM_ATAMP,                                 // @ and &
-  CUSTOM_HASHSC,                                // # and ;
-  CUSTOM_DOTDLR,                                // . and $
-  CUSTOM_COMMCLN,                               // , and :
-  CUSTOM_GRVSLH,                                // ` and /
-  CUSTOM_TILDCRT,                               // ~ and ^
-  CUSTOM_PERCPIPE,                              // % and |
-  CUSTOM_COMMA_LPAREN = SAFE_RANGE,             // , and (
-  CUSTOM_DOT_RPAREN,                            // . and )
-  BRACES = SAFE_RANGE,                          // { と } を同時入力
   BRACKETS = SAFE_RANGE,                        // [ と ] を同時入力
   PARENS,                                       // ( と ) を同時入力
   ANGLE_BRACKETS,                               // < と > を同時入力
+  CURLY_BRACES,                                 // { と } を同時入力
   MIDDLE_DOT = SAFE_RANGE,                      // ・(中黒) 
 };
 
@@ -157,66 +146,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return false;
     }
 
-    // カスタムキーコード
-    case CUSTOM_QUES:
-    case CUSTOM_EXEQ:
-    case CUSTOM_ATAMP:
-    case CUSTOM_HASHSC:
-    case CUSTOM_DOTDLR:
-    case CUSTOM_COMMCLN:
-    case CUSTOM_GRVSLH:
-    case CUSTOM_TILDCRT:
-    case CUSTOM_PERCPIPE: {
-      if (record->event.pressed) {
-        switch (keycode) {
-          case CUSTOM_QUES:
-            tap_code16((get_mods() & MOD_MASK_SHIFT) ? KC_QUES : KC_QUOT);
-            break;
-          case CUSTOM_EXEQ:
-            tap_code16((get_mods() & MOD_MASK_SHIFT) ? S(KC_1) : KC_EQUAL);
-            break;
-          case CUSTOM_ATAMP:
-            tap_code16((get_mods() & MOD_MASK_SHIFT) ? KC_AMPR : KC_AT);
-            break;
-          case CUSTOM_HASHSC:
-            if (get_mods() & MOD_MASK_SHIFT) {
-                del_mods(MOD_MASK_SHIFT);
-                tap_code(KC_SCLN);
-                set_mods(MOD_MASK_SHIFT);
-            } else {
-                tap_code16(S(KC_3));
-            }
-            break;
-          case CUSTOM_DOTDLR:
-            tap_code16((get_mods() & MOD_MASK_SHIFT) ? S(KC_4) : KC_DOT);
-            break;
-          case CUSTOM_COMMCLN:
-            tap_code16((get_mods() & MOD_MASK_SHIFT) ? KC_COLN : KC_COMM);
-            break;
-          case CUSTOM_TILDCRT:
-            tap_code16((get_mods() & MOD_MASK_SHIFT) ? S(KC_6) : KC_TILD);
-            break;
-          case CUSTOM_PERCPIPE:
-            tap_code16((get_mods() & MOD_MASK_SHIFT) ? S(KC_BSLS) : S(KC_5));
-            break;
-          case CUSTOM_GRVSLH:
-            if (get_mods() & MOD_MASK_SHIFT) {
-                // Shiftが押されている場合でも、Shiftを無視してグレイブアクセントを出力する
-                del_mods(MOD_MASK_SHIFT);  // Shift修飾キーを一時的に解除
-                tap_code(KC_GRV);  // グレイブアクセント（`）を送信
-                set_mods(get_mods() | MOD_MASK_SHIFT);  // Shift修飾キーを元に戻す
-            } else {
-                tap_code(KC_SLSH);  // スラッシュ（/）を送信
-            }
-            break;
-        }
-        
-      }
-      return false;
-    }
 
     // ショートカットの入力
-    case BRACES:
+    case BRACKETS:
+      if (record->event.pressed) {
+          SEND_STRING("[]");
+      }
+      return false;
+
+    case CURLY_BRACES:
       if (record->event.pressed) {
           SEND_STRING("{}");
       }
@@ -227,6 +165,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           SEND_STRING("()");
       }
       return false;
+
     case ANGLE_BRACKETS:
       if (record->event.pressed) {
           SEND_STRING("<>");
