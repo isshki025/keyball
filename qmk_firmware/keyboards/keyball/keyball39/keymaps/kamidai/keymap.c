@@ -16,9 +16,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [1] = LAYOUT_universal(
-    KC_QUES    , S(KC_QUOT) , S(KC_1)    , KC_TRNS  , S(KC_BSLS) ,                            S(KC_4)       , S(KC_6) , S(KC_3)  , KC_TRNS        , S(KC_5) ,
-    S(KC_2)    , KC_QUOT    , S(KC_4)    , KC_TRNS  , UC(0x00B7) ,                            KC_MINUS      , KC_TRNS , BRACKETS , CURLY_BRACES   , KC_TRNS ,
-    C(KC_LEFT) , KC_GRV     , S(KC_SCLN) , KC_SCLN  , KC_SLSH    ,                            S(KC_GRV)     , S(KC_7) , PARENS   , ANGLE_BRACKETS , KC_TRNS ,
+    KC_QUES    , S(KC_QUOT) , S(KC_1)    , KC_TRNS  , S(KC_BSLS) ,                            KC_BSLS       , S(KC_6) , S(KC_3)  , KC_TRNS        , S(KC_5) ,
+    S(KC_2)    , KC_QUOT    , S(KC_4)    , KC_TRNS  , KC_SLSH    ,                            KC_MINUS      , KC_TRNS , BRACKETS , CURLY_BRACES   , KC_TRNS ,
+    C(KC_LEFT) , KC_GRV     , S(KC_SCLN) , KC_SCLN  , KC_BSLS    ,                            S(KC_GRV)     , S(KC_7) , PARENS   , ANGLE_BRACKETS , KC_TRNS ,
     KC_TRNS    , KC_TRNS    , KC_TRNS    , KC_TRNS  , KC_TRNS    , KC_TRNS ,        KC_TRNS , LT(2, KC_DEL) , KC_TRNS , KC_TRNS  , KC_TRNS        , KC_TRNS
   ),
 
