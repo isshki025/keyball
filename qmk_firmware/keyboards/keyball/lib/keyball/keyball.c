@@ -210,7 +210,7 @@ void pointing_device_driver_set_cpi(uint16_t cpi) {
 }
 
 static void adjust_mouse_speed(keyball_motion_t *m){
-    int16_t movement_size = abs(m->x) + abs(m->);
+    int16_t movement_size = abs(m->x) + abs(m->y);
     float speed_multiplier = 1.0;
     if(movement_size > 60){
         speed_multiplier = 3.0;
@@ -732,7 +732,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
     if (keycode >= QK_MODS && keycode <= QK_MODS_MAX) {
         keycode &= 0xff;
     }
-    
+
 #ifdef POINTING_DEVICE_AUTO_MOUSE_ENABLE
     // reduce auto mouse timeout if mouse key is pressed.
     if ((is_mouse_record_kb(keycode, record) || IS_MOUSEKEY(keycode)) && record->event.pressed) {
