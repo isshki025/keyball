@@ -673,13 +673,7 @@ void keyboard_post_init_kb(void) {
     keyboard_post_init_user();
 }
 
-#ifdef POINTING_DEVICE_AUTO_MOUSE_ENABLE
-    // reduce auto mouse timeout if mouse key is pressed.
-    if ((is_mouse_record_kb(keycode, record) || IS_MOUSEKEY(keycode)) && record->event.pressed) {
-        set_auto_mouse_timeout(keyball_get_auto_mouse_timeout());
-        keyball.total_mouse_movement = 0;
-    }
-#endif
+
 
 #if SPLIT_KEYBOARD
 void housekeeping_task_kb(void) {
@@ -738,6 +732,15 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
     if (keycode >= QK_MODS && keycode <= QK_MODS_MAX) {
         keycode &= 0xff;
     }
+    
+#ifdef POINTING_DEVICE_AUTO_MOUSE_ENABLE
+    // reduce auto mouse timeout if mouse key is pressed.
+    if ((is_mouse_record_kb(keycode, record) || IS_MOUSEKEY(keycode)) && record->event.pressed) {
+        set_auto_mouse_timeout(keyball_get_auto_mouse_timeout());
+        keyball.total_mouse_movement = 0;
+    }
+#endif
+
 
     switch (keycode) {
 #ifndef MOUSEKEY_ENABLE
