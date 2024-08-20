@@ -38,6 +38,7 @@ static const char BL = '\xB0'; // Blank indicator character
 static const char LFSTR_ON[] PROGMEM = "\xB2\xB3";
 static const char LFSTR_OFF[] PROGMEM = "\xB4\xB5";
 
+//トラックボールの動きの判定をしている
 keyball_t keyball = {
     .this_have_ball = false,
     .that_enable    = false,

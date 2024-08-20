@@ -41,7 +41,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define TAP_CODE_DELAY 5
 #define DYNAMIC_KEYMAP_LAYER_COUNT 7
 
-#define KEYBALL_CPI_DEFAULT 700       // 光学センサーPMW3360DM の解像度 (CPI) の規定値
+#define KEYBALL_CPI_DEFAULT 500       // 光学センサーPMW3360DM の解像度 (CPI) の規定値
 #define KEYBALL_SCROLL_DIV_DEFAULT 4  // スクロール速度の規定値
 
 // ファームウェアのサイズを削減
@@ -50,13 +50,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define IGNORE_MOD_TAP_INTERRUPT  // 10バイト
 // #define TAPPING_FORCE_HOLD  // 34バイト
 // 下記三つで444バイト
-#define TAPPING_TERM 175
+#define TAPPING_TERM 200
 // #define PERMISSIVE_HOLD
 // #define RETRO_TAPPING
 
 
 #define TAP_CODE_DELAY 5
 
-#define AUTO_MOUSE_DEFAULT_LAYER 1
+#define AUTO_MOUSE_DEFAULT_LAYER 7
 #define POINTING_DEVICE_AUTO_MOUSE_ENABLE
 #define AUTO_MOUSE_LAYER_KEEP_TIME 30000

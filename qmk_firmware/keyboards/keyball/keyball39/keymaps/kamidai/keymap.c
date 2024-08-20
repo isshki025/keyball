@@ -59,23 +59,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-  keyball_set_scroll_mode(get_highest_layer(state) == 1 || get_highest_layer(state) == 3);
+  // レイヤーが2の時のみスクロールモードを有効にする
+  keyball_set_scroll_mode(get_highest_layer(state) == 2);
+
+  // レイヤーに応じたRGBライトの設定
   switch (get_highest_layer(state)) {
     case click_layer:
-      rgblight_sethsv(HSV_WHITE);
-      break;
-    case 1:
-      rgblight_sethsv(HSV_RED);
+      rgblight_sethsv(HSV_WHITE);  // click_layerでは白色
       break;
     case 2:
-      rgblight_sethsv(HSV_YELLOW);
+      rgblight_sethsv(HSV_YELLOW);  // レイヤー2では黄色
       break;
-    case 3:
-      rgblight_sethsv(HSV_GREEN);
-      break;
-
     default:
-      rgblight_sethsv(HSV_OFF);
+      rgblight_sethsv(HSV_OFF);     // それ以外はライトをオフ
   }
 
   #ifdef POINTING_DEVICE_AUTO_MOUSE_ENABLE
