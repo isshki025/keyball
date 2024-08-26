@@ -85,11 +85,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
 #include "lib/oledkit/oledkit.h"
 
-void oledkit_render_info_user(void) {
-  keyball_oled_render_keyinfo_t2();
-  keyball_oled_render_ballinfo_t2();
-  keyball_oled_render_cat();
-}
+
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
   return !is_keyboard_master() ? OLED_ROTATION_270 : OLED_ROTATION_180;
 }
