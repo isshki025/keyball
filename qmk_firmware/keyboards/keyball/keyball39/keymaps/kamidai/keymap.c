@@ -52,9 +52,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [6] = LAYOUT_universal(
     KC_TRNS  , KC_TRNS     , KC_TRNS    , KC_TRNS    , KC_TRNS ,                            KC_TRNS     , KC_TRNS    , KC_TRNS    , KC_TRNS    , KC_TRNS  ,
-    KC_LALT  , KC_WWW_BACK , KC_MS_BTN1 , KC_MS_BTN2 , KC_TRNS ,                            KC_WWW_BACK , KC_MS_BTN1 , KC_MS_BTN3 , KC_MS_BTN2 , KC_TRNS  ,
+    KC_LALT  , ALT_LEFT    , KC_MS_BTN2 , KC_MS_BTN1 , KC_TRNS ,                            KC_WWW_BACK , KC_MS_BTN1 , KC_MS_BTN3 , KC_MS_BTN2 , KC_TRNS  ,
     KC_TRNS  , KC_TRNS     , KC_TRNS    , KC_TRNS    , KC_TRNS ,                            KC_TRNS     , KC_TRNS    , KC_TRNS    , KC_TRNS    , KC_TRNS  ,
-    KC_TRNS  , KC_TRNS     , KC_TRNS    , KC_TRNS    , KC_TRNS , KC_TRNS  ,      KC_TRNS  , KC_TRNS     , KC_TRNS    , KC_TRNS    , KC_TRNS    , KC_TRNS  
+    LT(2,KC_LGUI)  , KC_TRNS     , KC_TRNS    , KC_TRNS    , KC_TRNS , KC_TRNS  ,      KC_TRNS  , KC_TRNS     , KC_TRNS    , KC_TRNS    , KC_TRNS    , KC_TRNS  
   )
 };
 
@@ -86,47 +86,11 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 #include "lib/oledkit/oledkit.h"
 
 void oledkit_render_info_user(void) {
-  // デバッグ用に変数を表示する
-  // oled_write_P(PSTR("Debug:"), false);
-  // oled_write(get_u8_str(xxx, ' '), false);
-
-  keyball_oled_render_keyinfo();   // キー情報を表示
-  keyball_oled_render_ballinfo();  // トラックボール情報を表示
-
-  // <Layer>を表示する
-  oled_write_P(PSTR("Layer:"), false);
-  oled_write(get_u8_str(get_highest_layer(layer_state), ' '), false);
-
-  // <マウス移動量 / クリックレイヤーしきい値>を表示
-  // oled_write_P(PSTR(" MV:"), false);
-  // oled_write(get_u8_str(mouse_movement, ' '), false);
-  // oled_write_P(PSTR("/"), false);
-  // oled_write(get_u8_str(to_clickable_movement, ' '), false);
-
-  // <state>を表示
-  switch (state) {
-    case WAITING:
-      oled_write_ln_P(PSTR("  WAITING"), false);
-      break;
-    case CLICKABLE:
-      oled_write_ln_P(PSTR("  CLICKABLE"), false);
-      break;
-    case CLICKING:
-      oled_write_ln_P(PSTR("  CLICKING"), false);
-      break;
-    case CLICKED:
-      oled_write_ln_P(PSTR("  CLICKED"), false);
-      break;
-    case SWIPE:
-      oled_write_ln_P(PSTR("  SWIPE"), false);
-      break;
-    case SWIPING:
-      oled_write_ln_P(PSTR("  SWIPING"), false);
-      break;
-    case NONE:
-      oled_write_ln_P(PSTR("  NONE"), false);
-      break;
-  }
+  keyball_oled_render_keyinfo_t2();
+  keyball_oled_render_ballinfo_t2();
+  keyball_oled_render_cat();
+}
+oled_rotation_t oled_init_user(oled_rotation_t rotation) {
+  return !is_keyboard_master() ? OLED_ROTATION_180 : OLED_ROTATION_270;
 }
 #endif
-

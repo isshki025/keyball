@@ -54,6 +54,7 @@ enum custom_keycodes {
   ANGLE_BRACKETS,                               // < と > を同時入力
   CURLY_BRACES,                                 // { と } を同時入力
   MIDDLE_DOT = SAFE_RANGE,                      // ・(中黒) 
+  ALT_LEFT = SAFE_RANGE,
 };
 
 // マクロキーの処理を行う関数
@@ -176,6 +177,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         disable_click_layer();
       }
+    
+    case ALT_LEFT:
+      if (record->event.pressed) {
+          register_code(KC_LALT);
+          register_code(KC_LEFT);
+      } else {
+          unregister_code(KC_LEFT);
+          unregister_code(KC_LALT);
+      }
+      return false;
   }
   return true;
 }
