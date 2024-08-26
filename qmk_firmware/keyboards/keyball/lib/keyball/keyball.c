@@ -567,12 +567,12 @@ void render_current_image(void) {
     }
 }
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    if (record->event.pressed) {
-        current_image = !current_image;
-    }
-    return true;
-}
+// bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+//     if (record->event.pressed) {
+//         current_image = !current_image;
+//     }
+//     return true;
+// }
 bool oled_task_user(void) {
     if (is_keyboard_master()) {
         render_current_image();  // マスター側でキー入力に応じた画像を表示
