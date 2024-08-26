@@ -35,8 +35,8 @@ const uint16_t AML_TIMEOUT_QU  = 50;   // Quantization Unit
 const uint16_t AML_ACTIVATE_THRESHOLD = 50;
 
 static const char BL = '\xB0'; // Blank indicator character
-static const char LFSTR_ON[] PROGMEM = "\xB2\xB3";
-static const char LFSTR_OFF[] PROGMEM = "\xB4\xB5";
+// static const char LFSTR_ON[] PROGMEM = "\xB2\xB3";
+// static const char LFSTR_OFF[] PROGMEM = "\xB4\xB5";
 
 //トラックボールの動きの判定をしている
 keyball_t keyball = {
@@ -131,37 +131,37 @@ static inline int8_t clip2int8(int16_t v) {
 }
 
 #ifdef OLED_ENABLE
-static const char *format_4d(int8_t d) {
-    static char buf[5] = {0}; // max width (4) + NUL (1)
-    char        lead   = ' ';
-    if (d < 0) {
-        d    = -d;
-        lead = '-';
-    }
-    buf[3] = (d % 10) + '0';
-    d /= 10;
-    if (d == 0) {
-        buf[2] = lead;
-        lead   = ' ';
-    } else {
-        buf[2] = (d % 10) + '0';
-        d /= 10;
-    }
-    if (d == 0) {
-        buf[1] = lead;
-        lead   = ' ';
-    } else {
-        buf[1] = (d % 10) + '0';
-        d /= 10;
-    }
-    buf[0] = lead;
-    return buf;
-}
+// static const char *format_4d(int8_t d) {
+//     static char buf[5] = {0}; // max width (4) + NUL (1)
+//     char        lead   = ' ';
+//     if (d < 0) {
+//         d    = -d;
+//         lead = '-';
+//     }
+//     buf[3] = (d % 10) + '0';
+//     d /= 10;
+//     if (d == 0) {
+//         buf[2] = lead;
+//         lead   = ' ';
+//     } else {
+//         buf[2] = (d % 10) + '0';
+//         d /= 10;
+//     }
+//     if (d == 0) {
+//         buf[1] = lead;
+//         lead   = ' ';
+//     } else {
+//         buf[1] = (d % 10) + '0';
+//         d /= 10;
+//     }
+//     buf[0] = lead;
+//     return buf;
+// }
 
-static char to_1x(uint8_t x) {
-    x &= 0x0f;
-    return x < 10 ? x + '0' : x + 'a' - 10;
-}
+// static char to_1x(uint8_t x) {
+//     x &= 0x0f;
+//     return x < 10 ? x + '0' : x + 'a' - 10;
+// }
 #endif
 
 static void add_cpi(int8_t delta) {
@@ -573,13 +573,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     return true;
 }
-void oled_task_user(void) {
+bool oled_task_user(void) {
     if (is_keyboard_master()) {
-        render_current_image();
+        render_current_image();  // マスター側でキー入力に応じた画像を表示
     } else {
         uint8_t current_layer = biton32(layer_state);
-        render_layer_image(current_layer);
+        render_layer_image(current_layer);  // スレイブ側でレイヤーに応じた画像を表示
     }
+    return false;  // 必要に応じてtrueに変更
 }
 
 #endif
