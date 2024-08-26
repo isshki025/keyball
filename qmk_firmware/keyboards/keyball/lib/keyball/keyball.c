@@ -624,6 +624,73 @@ void keyball_oled_render_cat(void) {
 }
 
 
+void keyball_oled_render_ballinfo_t2(void) {
+#ifdef OLED_ENABLE
+    // Format: `Ball:{mouse x}{mouse y}{mouse h}{mouse v}`
+    //
+    // Output example:
+    //
+    //     Ball: -12  34   0   0
+
+    // 1st line, "Ball" label, mouse x, y, h, and v.
+    // oled_write_P(PSTR("Ball\xB1"), false);
+    oled_write_P(PSTR("x"), false);
+    oled_write(format_4d(keyball.last_mouse.x), false);
+
+    oled_write_P(PSTR("y"), false);
+    oled_write(format_4d(keyball.last_mouse.y), false);
+
+    oled_write_ln_P(PSTR(" "), false);
+
+    oled_write_P(PSTR("\xBC\xBD   "), false);
+    oled_write(format_4d(keyball_get_cpi()) + 1, false);
+    oled_write_P(PSTR("00 "), false);
+
+    oled_write_ln_P(PSTR(" "), false);
+
+
+    // indicate scroll snap mode: "VT" (vertical), "HN" (horiozntal), and "SCR" (free)
+#if 1 && KEYBALL_SCROLLSNAP_ENABLE == 2
+    switch (keyball_get_scrollsnap_mode()) {
+        case KEYBALL_SCROLLSNAP_MODE_VERTICAL:
+            oled_write_P(PSTR("VT "), false);
+            break;
+        case KEYBALL_SCROLLSNAP_MODE_HORIZONTAL:
+            oled_write_P(PSTR("HO "), false);
+            break;
+        default:
+            oled_write_P(PSTR("\xBE\xBF"), false);
+            break;
+    }
+#else
+    oled_write_P(PSTR("\xBE\xBF"), false);
+#endif
+    // indicate scroll mode: on/off
+    if (keyball.scroll_mode) {
+        oled_write_P(LFSTR_ON, false);
+    } else {
+        oled_write_P(LFSTR_OFF, false);
+    }
+
+    // indicate scroll divider:
+    oled_write_P(PSTR(" \xC0\xC1 "), false);
+    oled_write_char('0' + keyball_get_scroll_div(), false);
+
+    oled_write_ln_P(PSTR(" "), false);
+#endif
+}
+
+void keyball_oled_render_keyinfo_t2(void) {
+#ifdef OLED_ENABLE
+    // Format: `{name}{name}{name}{name}{name}`
+
+    // Pressing keys
+    oled_write(keyball.pressing_keys, false);
+#endif
+}
+
+
+
 #ifdef POINTING_DEVICE_AUTO_MOUSE_ENABLE
 void keyball_handle_auto_mouse_layer_change(layer_state_t state) {
     layer_state_t last_state = keyball.last_layer_state;
