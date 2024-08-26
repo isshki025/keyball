@@ -177,6 +177,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         disable_click_layer();
       }
+    break;
     
     case ALT_LEFT:
       if (record->event.pressed) {
