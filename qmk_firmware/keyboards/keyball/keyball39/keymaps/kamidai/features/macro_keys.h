@@ -49,6 +49,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     static bool is_ctrl_active = false;
 
     // キー入力に応じた画像切り替え処理 (keyball.c)
+    static uint8_t current_image = 0;
     if (record->event.pressed) {
         current_image = !current_image;
     }
