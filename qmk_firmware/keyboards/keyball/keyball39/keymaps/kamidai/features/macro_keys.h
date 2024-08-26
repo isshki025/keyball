@@ -28,33 +28,19 @@
  */
 
 enum custom_keycodes {
-  KC_BACK_TO_LAYER0_BTN1 = KEYBALL_SAFE_RANGE,  // (0x5DAF): レイヤー0に遷移できるBTN1
-  KC_DOUBLE_CLICK_BTN1,                         // (0x5DB0): 1タップでダブルクリックできるBTN1
-  KC_TRIPLE_CLICK_BTN1,                         // (0x5DB1): 1タップでトリプルクリックできるBTN1
-  SFT_T_G_KC_A,                                 // (0x5DB2):
-  SFT_T_S_KC_SCOLON,                            // (0x5DB3):
-//   COMBO_BRC,                                    // (0x5DB5):
-//   COMBO_select_BRC,                             // (0x5DB5):
-//   COMBO_S9_S0,                                  // (0x5DB5):
-//   COMBO_select_S9_S0,                           // (0x5DB5):
-//   COMBO_S_BRC,                                  // (0x5DB5):
-//   COMBO_select_S_BRC,                           // (0x5DB5):
-//   COMBO_sumitsuki_BRC,                          // (0x5DB5):
-//   COMBO_select_sumitsuki_BRC,                   // (0x5DB5):
-//   COMBO_MINUS_SPACE,                            // (0x5DB5):
-  // CUSTOM_LT1_LEFT,                           //
-  // CUSTOM_LT1_LEFT,                           //
-  // CUSTOM_S9,                                 //
-  // CUSTOM_S0,                                 //
-  // KC_ALT_BTN1,                               //
-  // select_BRC,
-  // CMD_SCRL,
-  BRACKETS = SAFE_RANGE,                        // [ と ] を同時入力
-  PARENS,                                       // ( と ) を同時入力
-  ANGLE_BRACKETS,                               // < と > を同時入力
-  CURLY_BRACES,                                 // { と } を同時入力
-  MIDDLE_DOT = SAFE_RANGE,                      // ・(中黒) 
-  ALT_LEFT = SAFE_RANGE,
+    KC_BACK_TO_LAYER0_BTN1 = KEYBALL_SAFE_RANGE,  // (0x5DAF): レイヤー0に遷移できるBTN1
+    KC_DOUBLE_CLICK_BTN1,                         // (0x5DB0): 1タップでダブルクリックできるBTN1
+    KC_TRIPLE_CLICK_BTN1,                         // (0x5DB1): 1タップでトリプルクリックできるBTN1
+    SFT_T_G_KC_A,                                 // (0x5DB2):
+    SFT_T_S_KC_SCOLON,                            // (0x5DB3):
+
+    BRACKETS = SAFE_RANGE + 0x10,                 // [ と ] を同時入力
+    PARENS,                                       // ( と ) を同時入力
+    ANGLE_BRACKETS,                               // < と > を同時入力
+    CURLY_BRACES,                                 // { と } を同時入力
+
+    MIDDLE_DOT = SAFE_RANGE + 0x20,               // ・(中黒)
+    ALT_LEFT,                                     // ALT + LEFT
 };
 
 // マクロキーの処理を行う関数
