@@ -91,6 +91,6 @@ void oledkit_render_info_user(void) {
   keyball_oled_render_cat();
 }
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
-  return !is_keyboard_master() ? OLED_ROTATION_180 : OLED_ROTATION_270;
+  return !is_keyboard_master() ? OLED_ROTATION_270 : OLED_ROTATION_180;
 }
 #endif

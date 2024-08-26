@@ -227,10 +227,8 @@ void keyball_oled_render_keyinfo(void);
 /// keyball_oled_render_layerinfo renders current layer status information to
 /// OLED.  It shows layer mask with number (1~f) for active layers and '_' for
 /// inactive layers.
-void keyball_oled_render_layerinfo(void);
-void keyball_oled_render_ballinfo_t2(void);
-void keyball_oled_render_keyinfo_t2(void);
-void keyball_oled_render_cat(void);
+void render_layer_image(uint8_t layer);
+void render_current_image(void);
 
 /// keyball_get_scroll_mode gets current scroll mode.
 bool keyball_get_scroll_mode(void);
