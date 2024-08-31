@@ -1,5 +1,8 @@
 {
     "cSpell.words": [
         "keyball"
-    ]
+    ],
+    "files.associations": {
+        "auto_click_layer.h": "c"
+    }
 }

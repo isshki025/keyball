@@ -81,6 +81,12 @@ layer_state_t layer_state_set_user(layer_state_t state) {
   return state;
 }
 
+
+
+
+oled_rotation_t oled_init_user(oled_rotation_t rotation) {
+    return OLED_ROTATION_270;  // flips the display 180 degrees if offhand
+}
 #ifdef OLED_ENABLE
 
 #include "lib/oledkit/oledkit.h"
