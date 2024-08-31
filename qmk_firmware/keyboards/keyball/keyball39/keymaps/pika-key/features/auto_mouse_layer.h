@@ -4,8 +4,8 @@ enum ball_state {
   CLICKABLE,  // マウスレイヤー有効になりクリック入力ができる
   CLICKING,   // クリック中
   CLICKED,    // クリック直後
-  SWIPE,      // スワイプモードが有効になりスワイプ入力ができる
-  SWIPING     // スワイプ中
+  // SWIPE,      // スワイプモードが有効になりスワイプ入力ができる
+  // SWIPING     // スワイプ中
 
 };
 enum ball_state state;                // 現在のクリック入力受付の状態
@@ -34,7 +34,7 @@ void disable_click_layer(void) {
 int16_t my_abs(int16_t num) {
     if (num < 0) {
         num = -num;
-    }j
+    }
     return num;
 }
 
@@ -65,25 +65,25 @@ report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
         // 状態が"クリック中"のときは何もしない
         break;
 
-      case SWIPE:
-        click_timer = timer_read();  // タイマーをリセット
+      // case SWIPE:
+      //   click_timer = timer_read();  // タイマーをリセット
 
-        // マウスの移動が閾値を超えた場合、スワイプを処理
-        if (my_abs(current_x) >= SWIPE_THRESHOLD || my_abs(current_y) >= SWIPE_THRESHOLD) {
-          rgblight_sethsv(HSV_PINK);                    // LEDをピンクに変更
-          process_swipe_gesture(current_x, current_y);  // スワイプジェスチャを処理
-          is_swiped = true;
+      //   // マウスの移動が閾値を超えた場合、スワイプを処理
+      //   if (my_abs(current_x) >= SWIPE_THRESHOLD || my_abs(current_y) >= SWIPE_THRESHOLD) {
+      //     rgblight_sethsv(HSV_PINK);                    // LEDをピンクに変更
+      //     process_swipe_gesture(current_x, current_y);  // スワイプジェスチャを処理
+      //     is_swiped = true;
 
-          // 一度のスワイプにつき、一回のジェスチャーを処理する
-          if (is_repeat == false) {
-            state = SWIPING;  // スワイプ中状態に遷移
-          }
-        }
-        break;
+      //     // 一度のスワイプにつき、一回のジェスチャーを処理する
+      //     if (is_repeat == false) {
+      //       state = SWIPING;  // スワイプ中状態に遷移
+      //     }
+      //   }
+      //   break;
 
-      case SWIPING:
-        // 状態が"スワイプ中"のときは何もしない
-        break;
+      // case SWIPING:
+      //   // 状態が"スワイプ中"のときは何もしない
+      //   break;
 
       default:
         click_timer = timer_read();  // タイマーをリセット
@@ -119,16 +119,16 @@ report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
         }
         break;
 
-      case SWIPE:
-        rgblight_sethsv(HSV_SPRINGGREEN);  // LEDをスプリング・グリーンに変更
-        break;
+      // case SWIPE:
+      //   rgblight_sethsv(HSV_SPRINGGREEN);  // LEDをスプリング・グリーンに変更
+      //   break;
 
-      case SWIPING:
-        // 一定時間が経過したら、状態をSWIPEに変更
-        if (timer_elapsed(click_timer) > 300) {
-          state = SWIPE;
-        }
-        break;
+      // case SWIPING:
+      //   // 一定時間が経過したら、状態をSWIPEに変更
+      //   if (timer_elapsed(click_timer) > 300) {
+      //     state = SWIPE;
+      //   }
+      //   break;
 
       default:
         mouse_movement = 0;  // マウスの動きを0にリセット

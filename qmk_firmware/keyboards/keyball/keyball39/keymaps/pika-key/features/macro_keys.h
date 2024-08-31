@@ -18,7 +18,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
 
     // macrokeys.h からの処理
-    current_keycode = keycode;
+    // current_keycode = keycode;
 
   switch (keycode) {
     // ショートカットの入力
