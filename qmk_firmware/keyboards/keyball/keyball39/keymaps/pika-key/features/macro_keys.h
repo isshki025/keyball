@@ -9,8 +9,8 @@ enum custom_keycodes {
 // マクロキーの処理を行う関数
 extern uint8_t current_image;
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    static bool is_gui_active = false;
-    static bool is_ctrl_active = false;
+    // static bool is_gui_active = false;
+    // static bool is_ctrl_active = false;
 
     // キー入力に応じた画像切り替え処理 (keyball.c)
     if (record->event.pressed) {
