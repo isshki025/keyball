@@ -88,8 +88,7 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
     return OLED_ROTATION_270;  // flips the display 180 degrees if offhand
 }
 void oledkit_render_info_user(void) {
-  uint8_t current_layer = get_highest_layer(layer_state); // 現在のレイヤーを取得
-  render_layer_image(current_layer); // レイヤーを引数として渡す
+  render_layer_image(uint8_t layer); // レイヤーを引数として渡す
 }
 
 #endif
