@@ -84,11 +84,14 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
 #ifdef OLED_ENABLE
 #include "lib/oledkit/oledkit.h"
+
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
-    return OLED_ROTATION_270;  // flips the display 180 degrees if offhand
-}
-void oledkit_render_info_user(void) {
-  render_layer_image(layer); // レイヤーを引数として渡す
+    return OLED_ROTATION_270;  // OLEDディスプレイを180度回転
 }
 
-#endif
+void oledkit_render_info_user(void) {
+    uint8_t layer = get_highest_layer(layer_state);  // 現在のレイヤーを取得
+    render_layer_image(layer);  // 取得したレイヤーを引数として画像を切り替える
+}
+
+#endi
