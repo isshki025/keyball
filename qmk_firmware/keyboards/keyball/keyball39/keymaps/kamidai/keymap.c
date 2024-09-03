@@ -82,17 +82,14 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 }
 
 
-
-
+#ifdef OLED_ENABLE
+#include "lib/oledkit/oledkit.h"
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
     return OLED_ROTATION_270;  // flips the display 180 degrees if offhand
 }
-#ifdef OLED_ENABLE
-
-#include "lib/oledkit/oledkit.h"
-
-
-oled_rotation_t oled_init_user(oled_rotation_t rotation) {
-  return !is_keyboard_master() ? OLED_ROTATION_270 : OLED_ROTATION_180;
+void oledkit_render_info_user(void) {
+    // 猫を中央に持ってくるために空行を入れる
+    render_layer_image();
 }
+
 #endif
