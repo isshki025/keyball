@@ -94,4 +94,4 @@ void oledkit_render_info_user(void) {
     render_layer_image(layer);  // 取得したレイヤーを引数として画像を切り替える
 }
 
-#endi
+#endif
