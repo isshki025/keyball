@@ -60,11 +60,10 @@ enum custom_keycodes {
   CUSTOM_PERCPIPE,                              // % and |
   CUSTOM_COMMA_LPAREN = SAFE_RANGE,             // , and (
   CUSTOM_DOT_RPAREN,                            // . and )
-  BRACES = SAFE_RANGE,                          // { と } を同時入力
-  BRACKETS = SAFE_RANGE,                        // [ と ] を同時入力
+  BRACES,                          // { と } を同時入力
+  BRACKETS,                        // [ と ] を同時入力
   PARENS,                                       // ( と ) を同時入力
   ANGLE_BRACKETS,                               // < と > を同時入力
-  MIDDLE_DOT = SAFE_RANGE,                      // ・(中黒) 
 };
 
 // マクロキーの処理を行う関数
@@ -204,22 +203,22 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     // ショートカットの入力
     case BRACES:
       if (record->event.pressed) {
-           tap_code(JP_LCBR);
-           tap_code(JP_RCBR);
+           tap_code16(JP_LCBR);
+           tap_code16(JP_RCBR);
       }
       return false;
     
     case BRACKETS:
       if (record->event.pressed) {
-           tap_code(JP_LBRC);
-           tap_code(JP_RBRC);
+           tap_code16(JP_LBRC);
+           tap_code16(JP_RBRC);
       }
       return false;
 
     case PARENS:
       if (record->event.pressed) {
-          tap_code(JP_LPRN);
-          tap_code(JP_RPRN);
+          tap_code16(JP_LPRN);
+          tap_code16(JP_RPRN);
       }
       return false;
 
