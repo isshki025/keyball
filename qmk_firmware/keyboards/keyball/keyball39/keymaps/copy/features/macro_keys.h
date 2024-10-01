@@ -204,15 +204,25 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     // ショートカットの入力
     case BRACES:
       if (record->event.pressed) {
-          SEND_STRING("{}");
+           tap_code(JP_LCBR);
+           tap_code(JP_RCBR);
+      }
+      return false;
+    
+    case BRACKETS:
+      if (record->event.pressed) {
+           tap_code(JP_LBRC);
+           tap_code(JP_RBRC);
       }
       return false;
 
     case PARENS:
       if (record->event.pressed) {
-          SEND_STRING("()");
+          tap_code(JP_LPRN);
+          tap_code(JP_RPRN);
       }
       return false;
+
     case ANGLE_BRACKETS:
       if (record->event.pressed) {
           SEND_STRING("<>");
