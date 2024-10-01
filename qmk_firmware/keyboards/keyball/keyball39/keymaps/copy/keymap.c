@@ -18,7 +18,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [1] = LAYOUT_universal(
     JP_QUES    , JP_DQUO , JP_EXLM     , KC_TRNS  , JP_PIPE  ,                           JP_YEN         ,JP_UNDS   , JP_HASH  , JP_CIRC        , JP_PERC ,
-    JP_AT    , JP_QUOT    ,JP_DLR    , KC_TRNS  ,JP_SLSH    ,                            JP_MINS      , KC_TRNS    , BRACKETS , CURLY_BRACES   , KC_TRNS ,
+    JP_AT    , JP_QUOT    ,JP_DLR    , KC_TRNS  ,JP_SLSH    ,                            JP_MINS      , KC_TRNS    , BRACKETS , BRACES   , KC_TRNS ,
     KC_TRNS , JP_GRV     , JP_COLN , JP_SCLN  , JP_BSLS    ,                            JP_TILD     , JP_AMPR    , PARENS   , ANGLE_BRACKETS , KC_TRNS ,
     KC_TRNS    , KC_TRNS    , KC_TRNS    , KC_TRNS  , KC_TRNS    , KC_TRNS ,        KC_TRNS , LT(2, KC_DEL) , KC_TRNS    , KC_TRNS  , KC_TRNS        , KC_TRNS
   ),
@@ -28,7 +28,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_LEFT  , KC_DOWN  , KC_RIGHT  , JP_ASTR   ,JP_SLSH  ,                            JP_EQL   , KC_4     , KC_5     , KC_6     , KC_TRNS ,
     KC_ESC   , KC_TRNS  , KC_TRNS   ,JP_EQL    , JP_DOT   ,                            KC_0       , KC_1     , KC_2     , KC_3     , KC_TRNS ,
     KC_TRNS  , KC_TRNS  , KC_TRNS   , KC_TRNS   , KC_TRNS  , KC_TRNS  ,      KC_TRNS  , KC_TRNS    , KC_TRNS  , KC_TRNS  , KC_TRNS  , KC_TRNS  
-  )
+  ),
 
   [3] = LAYOUT_universal(
     KC_TRNS  , KC_TRNS  , KC_TRNS  , KC_TRNS  , KC_TRNS  ,                            KC_F10   , KC_F7    , KC_F8    , KC_F9    , KC_TRNS  ,
@@ -81,17 +81,3 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
   return state;
 }
-
-#ifdef OLED_ENABLE
-
-#include "lib/oledkit/oledkit.h"
-
-void oledkit_render_info_user(void) {
-  keyball_oled_render_keyinfo_t2();
-  keyball_oled_render_ballinfo_t2();
-  keyball_oled_render_cat();
-}
-oled_rotation_t oled_init_user(oled_rotation_t rotation) {
-  return !is_keyboard_master() ? OLED_ROTATION_180 : OLED_ROTATION_270;
-}
-#endif
